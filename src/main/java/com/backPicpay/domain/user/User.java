@@ -1,21 +1,19 @@
 package com.backPicpay.domain.user;
 
 
+import com.backPicpay.DTO.UserDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 import java.math.BigDecimal;
 
 @Entity(name = "usuarios")
-
 @Table(name = "usuarios")
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class User {
     @Id
@@ -33,4 +31,15 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public User(UserDTO data){
+        this.nome = data.nome();
+        this.sobreNome = data.sobreNome();
+        this.balance = data.balance();
+        this.userType = data.userType();
+        this.email = data.email();
+        this.documento = data.documento();
+
+    }
+
 }
